@@ -1,5 +1,5 @@
 ---
-title: "Retrieving data from Yahoo Finance Test"
+title: "Retrieving data from Yahoo Finance"
 author: "Andrew Meng"
 date: "November 29, 2016"
 output: pdf_document
