@@ -25,10 +25,7 @@ getSymbols("^GSPC",src="yahoo",from="2014-1-1",to=Sys.Date())
 
 ```
 
-```
-## Warning in download.file(paste(yahoo.URL, "s=", Symbols.name, "&a=",
-## from.m, : downloaded length 59013 != reported length 200
-```
+
 
 ```
 ## [1] "GSPC"
