@@ -1,0 +1,110 @@
+---
+title: "Retrieving data from Yahoo Finance"
+author: "Andrew Meng"
+date: "November 29, 2016"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r cars}
+#####################################################################
+##########   Retrieving data from Yahoo Finance   ####################
+#####################################################################
+
+#  Installing 'quantmod' package is needed
+
+library(quantmod)
+getSymbols("^GSPC",src="yahoo",from="2014-1-1",to=Sys.Date()) 
+
+
+print(head(GSPC));print(tail(GSPC))    # Printing the first and last 6 records
+print(class(GSPC))
+print(is.OHLC(GSPC))
+print(is.OHLCV(GSPC))
+
+# is.OHLC (and is.HLC, similarly will return TRUE, when 
+# there are columns for Open, High, Low and Close. 
+# Additional columns will not affect the value.
+
+
+##### Retrive Appple Inc. stock data from 2013-1-1 to current date
+
+getSymbols("AAPL", src = "yahoo", from="2013-1-1", to= Sys.Date())
+print(head(AAPL)); print(tail(AAPL))
+
+# Print results
+
+# Retrive a list of stocks' data from Yahoo Finance
+
+mySymbols<- c("MSFT", "ORCL", "GOOG", "INTL", "AAPL", "CSCO", "SYMC", "TSLA")
+getSymbols(mySymbols,src= "yahoo", from= "2012-1-1", to= Sys.Date())
+
+print(head(TSLA)); print(tail(TSLA))
+print(head(GOOG)); print(tail(GOOG))
+
+
+#  Similarily, we can also use quantmod package to get data for other financial indexes
+
+
+# 10 year bond index
+getSymbols("^TNX",src="yahoo",from="2005-1-1",to=Sys.Date()) 
+print(head(TNX));print(tail(TNX))
+
+#  ETF FUND
+getSymbols("ACWI",src="yahoo",from="2005-1-1",to=Sys.Date()) 
+print(head(ACWI));print(tail(ACWI))
+
+# Get the currency exchange
+getFX("USD/JPY")
+print(head(USDJPY));print(tail(USDJPY))
+
+getSymbols("EUR/USD",src="oanda")
+print(head(EURUSD));print(tail(EURUSD))
+
+getSymbols("EUR/USD",src="oanda",from="2005-01-01")
+print(tail(EURUSD))
+
+
+# Get the lastest quoted price, take Apple Inc. as an example
+
+tmp <- getQuote("AAPL");print(tmp);print(class(tmp))
+
+
+
+
+
+# Get Financial info
+getFinancials("TSLA")
+viewFin(TSLA.f)
+
+viewFin(TSLA.f,"CF","A")   # view the CF statements
+
+getDividends("AAPL")
+
+getSplits("BIDU")   # 10 for 1
+getSplits("NKE")
+# Get rid of options and dividents
+
+getSymbols("BIDU", from="2005-01-01", src="yahoo")
+head(BIDU)
+head(BIDU.a  <- adjustOHLC(BIDU))  
+head(BIDU.uA <- adjustOHLC(BIDU, use.Adjusted=T)) 
+
+head(cbind(OpCl(BIDU),OpCl(BIDU.a),OpCl(BIDU.uA)))
+head(cbind(ClCl(BIDU),ClCl(BIDU.a),ClCl(BIDU.uA)))
+
+
+# Get option info
+BIDU.OPT <- getOptionChain("BIDU")
+print(class(BIDU.OPT)) 
+print(BIDU.OPT)        
+print(BIDU.OPT$symbol)  
+print(BIDU.OPT$calls)  
+```
+
+
+
