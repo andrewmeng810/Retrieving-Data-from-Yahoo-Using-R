@@ -17,61 +17,12 @@ output: pdf_document
 #  Installing 'quantmod' package is needed
 
 library(quantmod)
-```
-
-```
-## Warning: package 'quantmod' was built under R version 3.2.5
-```
-
-```
-## Loading required package: xts
-```
-
-```
-## Warning: package 'xts' was built under R version 3.2.5
-```
-
-```
-## Loading required package: zoo
-```
-
-```
-## 
-## Attaching package: 'zoo'
-```
-
-```
-## The following objects are masked from 'package:base':
-## 
-##     as.Date, as.Date.numeric
-```
-
-```
-## Loading required package: TTR
-```
-
-```
-## Warning: package 'TTR' was built under R version 3.2.5
-```
-
-```
-## Version 0.4-0 included new data defaults. See ?getSymbols.
-```
+`
 
 ```r
 getSymbols("^GSPC",src="yahoo",from="2014-1-1",to=Sys.Date()) 
 ```
 
-```
-##     As of 0.4-0, 'getSymbols' uses env=parent.frame() and
-##  auto.assign=TRUE by default.
-## 
-##  This  behavior  will be  phased out in 0.5-0  when the call  will
-##  default to use auto.assign=FALSE. getOption("getSymbols.env") and 
-##  getOptions("getSymbols.auto.assign") are now checked for alternate defaults
-## 
-##  This message is shown once per session and may be disabled by setting 
-##  options("getSymbols.warning4.0"=FALSE). See ?getSymbols for more details.
 ```
 
 ```
